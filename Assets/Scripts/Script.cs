@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Runtime.InteropServices;
 
 
 public class Script : MonoBehaviour
@@ -23,7 +24,10 @@ public class Script : MonoBehaviour
     private int score = 0;
 
     private int random = 0;
-    
+
+    [DllImport("__Internal")]
+    private static extern void SendData(int data);
+
     public void ReceiveData(string data)
     {
         Debug.Log("Received data from React: " + data);
@@ -37,6 +41,14 @@ public class Script : MonoBehaviour
             text.text = score.ToString();
             StartCoroutine(NewCustomer());
         }
+    }
+
+    public void SendDataToReact(string data)
+    {
+        random = Random.Range(0, 1000);
+        #if UNITY_WEBGL == true && UNITY_EDITOR == false
+            SendData (random);
+        #endif
     }
 
     void Start()
