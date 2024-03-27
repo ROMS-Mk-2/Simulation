@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
+    public string Food;
+    
     // Start is called before the first frame update
     void Start()
     {

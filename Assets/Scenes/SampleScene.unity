@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -157,9 +157,13 @@ MonoBehaviour:
   customerPizza: {fileID: 2405252894634118124, guid: 304a2d35f6ae0fb488a8e50c4fdf9046, type: 3}
   customerHotDog: {fileID: 8250178633202271535, guid: 712a60c09803b1c43b96c1bef1dc1899, type: 3}
   customerList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8250178633202271535, guid: 712a60c09803b1c43b96c1bef1dc1899, type: 3}
+  - {fileID: 2668801024990747917, guid: 268bb209519d636418d618b7436894b5, type: 3}
+  - {fileID: 2405252894634118124, guid: 304a2d35f6ae0fb488a8e50c4fdf9046, type: 3}
+  - {fileID: 2405252894634118124, guid: da18fa43da50abe41ac881755ece5d15, type: 3}
+  - {fileID: 2405252894634118124, guid: 5b800f604af4db145bfc382428941fc3, type: 3}
+  - {fileID: 2405252894634118124, guid: 2314002ac1a53984e80c4c4693bb3d79, type: 3}
+  customerNum: 0
 --- !u!4 &44487566
 Transform:
   m_ObjectHideFlags: 0
@@ -169,7 +173,7 @@ Transform:
   m_GameObject: {fileID: 44487564}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -192,7 +196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &49661534
 RectTransform:
   m_ObjectHideFlags: 0
@@ -878,7 +882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &706011314
 RectTransform:
   m_ObjectHideFlags: 0
