@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
+<<<<<<< Updated upstream
+=======
+    public string Food;
+    public bool Check = false;
+    
+>>>>>>> Stashed changes
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +29,13 @@ public class Customer : MonoBehaviour
     
     public IEnumerator WalkAwayAnim()
     {
-        while (this.transform.localScale.x > 0.01)
+        while (this.transform.localScale.x > 0.01 && !this.Equals(null))
         {
             yield return new WaitForSeconds(0.01f);
             transform.localScale -= new Vector3(1, 1, 1) * Time.deltaTime * 5f;
         }
-        Destroy(this.gameObject);
+        if(!this.Equals(null))
+            Destroy(this.gameObject);
     }
     
     private IEnumerator WalkUpAnim()

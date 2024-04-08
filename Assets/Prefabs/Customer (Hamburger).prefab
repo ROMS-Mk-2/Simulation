@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8440428045777830793}
   - component: {fileID: -7354875102839504563}
   m_Layer: 0
-  m_Name: Customer (H)
+  m_Name: Customer (Hamburger)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
