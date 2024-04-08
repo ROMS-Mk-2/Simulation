@@ -5,7 +5,7 @@ using UnityEngine;
 public class Customer : MonoBehaviour
 {
     public string Food;
-    
+    public bool Check = false;
     // Start is called before the first frame update
     void Start()
     {
