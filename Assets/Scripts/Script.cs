@@ -9,23 +9,22 @@ using UnityEngine.UI;
 public class Script : MonoBehaviour
 {
     public TextMeshProUGUI text;
-
-    public GameObject customerBurger;
-    public GameObject customerPizza;
-    public GameObject customerHotDog;
+   
 
     public GameObject[] customerList = new GameObject[6];
     public List<GameObject> currentCustomers = new List<GameObject>();
-
+    
     private string currentCustomer;
     private GameObject currentCustomerObject;
 
     private List<string> foodList = new List<string>();
     private List<int> cart = new List<int>();
-
+    
     private int score = 0;
     private int random = 0;
-    private int customerNum = 3;
+    private int customerNum = 4;
+
+    int test = 0;
 
     [DllImport("__Internal")]
     private static extern void SendData(int data);
@@ -34,7 +33,7 @@ public class Script : MonoBehaviour
     {
         for (int i = cart.Count - 1; i >= 0; i--)
         {
-            foreach (GameObject o in currentCustomers)
+            foreach(GameObject o in currentCustomers)
             {
                 Customer customerScript = o.GetComponent<Customer>();
                 print("Food Bool: " + foodList[cart[i]].Equals(customerScript.Food) + " Check Bool: " + (customerScript.Check == false));
@@ -42,9 +41,16 @@ public class Script : MonoBehaviour
                 {
                     score++;
                     customerScript.Check = true;
+                    cart.RemoveAt(i);
                 }
             }
         }
+
+        foreach(int i in cart)
+        {
+            score--;
+        }
+
         text.text = score.ToString();
         StartCoroutine(NewCustomer());
     }
@@ -52,23 +58,19 @@ public class Script : MonoBehaviour
     public void SendDataToReact(string data)
     {
         random = Random.Range(0, 1000);
-#if UNITY_WEBGL == true && UNITY_EDITOR == false
+        #if UNITY_WEBGL == true && UNITY_EDITOR == false
             SendData (random);
-#endif
+        #endif
     }
 
     void Start()
     {
-        customerList[0] = customerBurger;
-        customerList[1] = customerPizza;
-        customerList[2] = customerHotDog;
-
+        foodList.Add("HotDog");
         foodList.Add("Hamburger");
         foodList.Add("Pizza");
-        foodList.Add("HotDog");
-        foodList.Add("Chicken");
-        foodList.Add("Fish");
         foodList.Add("Fry");
+        foodList.Add("Fish");
+        foodList.Add("Chicken");
 
         StartCoroutine(NewCustomer());
     }
@@ -79,24 +81,28 @@ public class Script : MonoBehaviour
         {
             b.enabled = false;
         }
-        foreach (GameObject o in currentCustomers)
+        foreach(GameObject o in currentCustomers)
         {
             Customer currentCustomerScript = o.GetComponent<Customer>();
             StartCoroutine(currentCustomerScript.WalkAwayAnim());
-
+            
             yield return new WaitForSeconds(1f);
         }
         currentCustomers.Clear();
         cart.Clear();
-
+        
         for (int i = 0; i < customerNum; i++)
-        {
+        {        
             int newRandom = Random.Range(0, 6);
-            GameObject currentCustomerObject = Instantiate(customerList[newRandom], new Vector3(transform.position.x + (i * 2), transform.position.y, transform.position.z), transform.rotation);
-            currentCustomerObject.name = "Customer " + (i + 1);
+            GameObject currentCustomerObject = Instantiate(customerList[newRandom], new Vector3(transform.position.x + (i*2), transform.position.y, transform.position.z), transform.rotation);
+            currentCustomerObject.name = "Customer " + (i+1);
             currentCustomers.Add(currentCustomerObject);
         }
-
+        test++;
+        if(test > 5)
+        {
+            test = 0;
+        }
         foreach (Button b in FindObjectsOfType<Button>())
         {
             b.enabled = true;
@@ -105,7 +111,7 @@ public class Script : MonoBehaviour
 
     public void PrintList()
     {
-        foreach (GameObject o in currentCustomers)
+        foreach(GameObject o in currentCustomers)
         {
             Customer customerScript = o.GetComponent<Customer>();
             print("Customer: " + o.name + " Food: " + customerScript.Food);
